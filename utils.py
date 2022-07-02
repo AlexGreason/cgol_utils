@@ -7,15 +7,15 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-import lifelib
 import requests
+from lifelib.pythlib.pattern import Pattern
 
 from Shinjuku.shinjuku import lt
-from Shinjuku.shinjuku.checks import check_line_worker
 from Shinjuku.shinjuku.gliderset import gset
 from Shinjuku.shinjuku.search import read_components, dijkstra
 from Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
-from cgolutils.paths import cgolroot
+from checks import check_line_worker
+from .paths import cgolroot
 
 min_paths = dijkstra()
 overrides = {}
@@ -404,7 +404,7 @@ def get_date_string(year=True, month=True, day=True, hour=False, minute=False, s
 
 
 def print_rle(code):
-    if isinstance(code, lifelib.pythlib.pattern.Pattern):
+    if isinstance(code, Pattern):
         print(code.rle_string())
         return
     print(lt.pattern(code).rle_string())

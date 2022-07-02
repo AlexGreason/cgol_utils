@@ -1,8 +1,8 @@
 from Shinjuku.shinjuku import lt
 from Shinjuku.shinjuku.search import dijkstra, lookup_synth
 from Shinjuku.shinjuku.transcode import realise_comp, decode_comp
-from cgolutils.paths import cgolroot
-from cgolutils.utils import min_paths, cost, get_improved, get_improved_synths, trueSLs, objects_minpaths
+from .paths import cgolroot
+from .utils import min_paths, cost, get_improved, get_improved_synths, trueSLs, objects_minpaths
 
 
 def improved_synths_mosaic(min_paths, sidelen=50, spacing=200, redundancies=False, forcecheck=None):
