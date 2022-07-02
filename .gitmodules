@@ -1,0 +1,3 @@
+[submodule "Shinjuku"]
+	path = Shinjuku
+	url = https://gitlab.com/parclytaxel/Shinjuku.git
