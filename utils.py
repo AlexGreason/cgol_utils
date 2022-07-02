@@ -1,19 +1,20 @@
 import copy
 import itertools
-from datetime import datetime
+import multiprocessing as mp
+import os
 import subprocess
 import time
-import os
+from datetime import datetime
 from pathlib import Path
 
 import lifelib
 import requests
+
 from Shinjuku.shinjuku import lt
 from Shinjuku.shinjuku.checks import check_line_worker
 from Shinjuku.shinjuku.gliderset import gset
-from Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
 from Shinjuku.shinjuku.search import read_components, dijkstra
-import multiprocessing as mp
+from Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
 from cgolutils.paths import cgolroot
 
 min_paths = dijkstra()
