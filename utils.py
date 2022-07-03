@@ -10,11 +10,11 @@ from pathlib import Path
 import requests
 from lifelib.pythlib.pattern import Pattern
 
-from Shinjuku.shinjuku import lt
-from Shinjuku.shinjuku.gliderset import gset
-from Shinjuku.shinjuku.search import read_components, dijkstra
-from Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
-from checks import check_line_worker
+from .Shinjuku.shinjuku import lt
+from .Shinjuku.shinjuku.gliderset import gset
+from .Shinjuku.shinjuku.search import read_components, dijkstra
+from .Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
+from .checks import check_line_worker
 from .paths import cgolroot
 
 min_paths = dijkstra()

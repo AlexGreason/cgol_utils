@@ -1,5 +1,5 @@
-from Shinjuku.shinjuku.checks import rewind_check
-from Shinjuku.shinjuku.transcode import realise_comp
+from .Shinjuku.shinjuku.checks import rewind_check
+from .Shinjuku.shinjuku.transcode import realise_comp
 
 
 def check_line_worker(args, do_print=True):
