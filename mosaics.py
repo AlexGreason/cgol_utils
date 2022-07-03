@@ -1,6 +1,6 @@
-from Shinjuku.shinjuku import lt
-from Shinjuku.shinjuku.search import dijkstra, lookup_synth
-from Shinjuku.shinjuku.transcode import realise_comp, decode_comp
+from .Shinjuku.shinjuku import lt
+from .Shinjuku.shinjuku.search import dijkstra, lookup_synth
+from .Shinjuku.shinjuku.transcode import realise_comp, decode_comp
 from .paths import cgolroot
 from .utils import min_paths, cost, get_improved, get_improved_synths, trueSLs, objects_minpaths
 

@@ -1,4 +1,4 @@
-from Shinjuku.shinjuku import lt
+from .Shinjuku.shinjuku import lt
 
 
 def size(code):
