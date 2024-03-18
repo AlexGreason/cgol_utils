@@ -3,6 +3,7 @@ import numpy as np
 from Shinjuku.shinjuku import lt
 
 
+
 def size(code):
     if code == "":
         return 0

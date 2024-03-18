@@ -1,8 +1,8 @@
 import os
 
-from Shinjuku.shinjuku import lt
-from Shinjuku.shinjuku.checks import rewind_check
-from Shinjuku.shinjuku.transcode import decode_comp, realise_comp
+from .Shinjuku.shinjuku import lt
+from .Shinjuku.shinjuku.checks import rewind_check
+from .Shinjuku.shinjuku.transcode import decode_comp, realise_comp
 from .paths import cgolroot
 from .utils import convert_synths_to_sjk
 from .utils import get_minpaths, get_improved, \
