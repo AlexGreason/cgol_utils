@@ -1,1 +1,1 @@
-cgolroot = "./data"
+cgolroot = "/home/exa/Documents/lifestuff"

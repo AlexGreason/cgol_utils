@@ -14,7 +14,7 @@ from Shinjuku.shinjuku import lt
 from Shinjuku.shinjuku.gliderset import gset
 from Shinjuku.shinjuku.search import read_components, dijkstra
 from Shinjuku.shinjuku.transcode import decode_comp, encode_comp, realise_comp
-from checks import check_line_worker
+from .checks import check_line_worker
 from .paths import cgolroot
 
 min_paths = dijkstra()
@@ -171,7 +171,7 @@ def expensive_stills(min_paths, cells=17, cost=17, maxcost=10000, force_true=Fal
     if force_true:
         tocheck = trueSLs
     for code in tocheck:
-        if code.startswith(f"xs{cells}_"):
+        if cells is None or code.startswith(f"xs{cells}_"):
             if maxcost >= min_paths[code][0] >= cost:
                 result.append(code)
     return result
@@ -497,6 +497,9 @@ def add_costs(codes):
 
 def mul(iterable):
     res = 1
+    for x in iterable:
+        res *= x
+    return res
 
 
 def listcombs(ngliders, nvals):

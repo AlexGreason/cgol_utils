@@ -98,7 +98,7 @@ def get_inputs(compfile, maxpop=9999):
 def get_all_prev(n, maxpop=9999, lookingfor="none"):
     prevstills = set([])
     for i in range(n):
-        path = f"{cgolroot}/transfer/specialrequest_{i}.sjk"
+        path = f"{cgolroot}/transfer_utils/specialrequest_{i}.sjk"
         if os.path.isfile(path):
             tmp = get_inputs(path, maxpop=maxpop)
             if lookingfor in tmp:

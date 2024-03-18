@@ -1,3 +1,5 @@
+import os
+
 from Shinjuku.shinjuku import lt
 from Shinjuku.shinjuku.search import dijkstra, lookup_synth
 from Shinjuku.shinjuku.transcode import realise_comp, decode_comp
@@ -71,6 +73,7 @@ def makemosaic(outfile, sidelen=40, startindex=0, spacing=100):
 
 
 def makemosaic_helper(synths, sidelen=40, startindex=0, spacing=100, fileprefix="mosaic", directory="mosaics"):
+    os.makedirs(f"{cgolroot}/{directory}", exist_ok=True)
     synthlist = list(synths.keys())
     nsynths = len(synthlist)
     j = 0
