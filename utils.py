@@ -72,30 +72,34 @@ def fetch_xs_synthesis_costs():
 def get_sorted_sls(min_paths, true, cata_costs, printdiffs=False, min_cost=0, max_cost=9999):
     objs = []
     knowns = fetch_xs_synthesis_costs()
-    for (apgcode, cost) in knowns:
-        if not apgcode.startswith("xs"):
-            continue  # not a still life
-        if apgcode.startswith("xs0"):
-            continue
-        cost = int(cost)
-        if cost == 999999_999999_999999:
-            cost = 9999
-        if cost < 100000_000000_000002:  # pseudo
-            pass
-        else:
-            cost -= 100000_000000_000000  # cost according to Cata
-            true.add(apgcode)
-        cata_costs[apgcode] = cost
-        if apgcode not in min_paths:
-            if printdiffs:
-                print(f"{apgcode} is not in local Shinjuku but in Cata!")
-            min_paths[apgcode] = (cost, None, None)
-        sjk_cost = min_paths[apgcode][0]
-        if sjk_cost != cost:
-            if printdiffs:
-                print(f"{apgcode} has cost {sjk_cost} by local Shinjuku but {cost} by Cata")
-            min_paths[apgcode][0] = min(cost, sjk_cost)
-        objs.append((apgcode, cost))
+    for vals in knowns:
+        try:
+            (apgcode, cost) = vals
+            if not apgcode.startswith("xs"):
+                continue  # not a still life
+            if apgcode.startswith("xs0"):
+                continue
+            cost = int(cost)
+            if cost == 999999_999999_999999:
+                cost = 9999
+            if cost < 100000_000000_000002:  # pseudo
+                pass
+            else:
+                cost -= 100000_000000_000000  # cost according to Cata
+                true.add(apgcode)
+            cata_costs[apgcode] = cost
+            if apgcode not in min_paths:
+                if printdiffs:
+                    print(f"{apgcode} is not in local Shinjuku but in Cata!")
+                min_paths[apgcode] = (cost, None, None)
+            sjk_cost = min_paths[apgcode][0]
+            if sjk_cost != cost:
+                if printdiffs:
+                    print(f"{apgcode} has cost {sjk_cost} by local Shinjuku but {cost} by Cata")
+                min_paths[apgcode][0] = min(cost, sjk_cost)
+            objs.append((apgcode, cost))
+        except Exception as e:
+            print(f"Error processing {vals}: {e}")
     objs.sort(key=lambda x: x[1])
     objs = [x[0] for x in objs if max_cost >= x[1] >= min_cost]
     return objs
@@ -211,24 +215,24 @@ def get_improved(min_paths, trueSLs, forcecheck=None):
     cheaper = set([])
     knowns = fetch_xs_synthesis_costs()
     catagolue_costs = {}
-    for (apgcode, cost) in knowns:
+    for (apgcode, objcost) in knowns:
         if apgcode.startswith("xs0"):
             continue
-        cost = int(cost)
-        if cost == 999999_999999_999999:
-            cost = 9999
-        if cost < 100000_000000_000002:  # pseudo
+        objcost = int(objcost)
+        if objcost == 999999_999999_999999:
+            objcost = 9999
+        if objcost < 100000_000000_000002:  # pseudo
             pass
         else:
-            cost -= 100000_000000_000000  # cost according to Cata
+            objcost -= 100000_000000_000000  # cost according to Cata
             trueSLs.add(apgcode)
 
         if apgcode not in min_paths:
             continue
         sjk_cost = min_paths[apgcode][0]
-        catagolue_costs[apgcode] = cost
-        if sjk_cost < cost:
-            print(f"{apgcode} has cost {sjk_cost} by local Shinjuku but {cost} by Cata")
+        catagolue_costs[apgcode] = objcost
+        if sjk_cost < objcost:
+            print(f"{apgcode} has cost {sjk_cost} by local Shinjuku but {objcost} by Cata")
             cheaper.add(apgcode)
     for apgcode in forcecheck:
         if apgcode not in catagolue_costs and apgcode in min_paths:
